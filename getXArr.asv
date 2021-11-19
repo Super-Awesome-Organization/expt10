@@ -1,0 +1,15 @@
+function [x_out] = getXArr(C,D)
+%C and D are both 1 byte
+%MSB is first
+%GETXARR Summary of this function goes here
+%   Detailed explanation goes here
+
+x_out = [];
+
+for x = 0:255
+   left =  
+    
+end    
+
+end
+
