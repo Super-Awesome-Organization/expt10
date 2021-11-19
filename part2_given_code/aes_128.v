@@ -14,14 +14,25 @@
  * limitations under the License.
  */
 
-module aes_128(clk, state, key, out);
+module aes_128(clk, state, key, fault_en, fault_bit, out);
     input          clk;
     input  [127:0] state, key;
+    input          fault_en;
+    input  [6:0]   fault_bit;
     output [127:0] out;
     reg    [127:0] s0, k0;
     wire   [127:0] s1, s2, s3, s4, s5, s6, s7, s8, s9,
                    k1, k2, k3, k4, k5, k6, k7, k8, k9,
                    k0b, k1b, k2b, k3b, k4b, k5b, k6b, k7b, k8b, k9b;
+
+    reg   [127:0] s9_fault;
+
+    always @(*) begin
+        s9_fault = s9;
+        if (fault_en) begin
+            s9_fault[fault_bit] = ~s9[fault_bit];
+        end
+    end
 
     always @ (posedge clk)
       begin
@@ -53,7 +64,7 @@ module aes_128(clk, state, key, out);
         r9 (clk, s8, k8b, s9);
 
     final_round
-        rf (clk, s9, k9b, out);
+        rf (clk, s9_fault, k9b, out);
 endmodule
 
 module expand_key_128(clk, in, out_1, out_2, rcon);

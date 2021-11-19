@@ -9,11 +9,14 @@
 //  the state and eba02e379817d636a144551df49ade37 as the key.
 
 
-module exp10_top_part2 (clk);
+module exp10_top_part2 (clk, fault_en, fault_bit, ciphertext);
 
-    input clk;
+    input 				clk;
+    input 				fault_en;
+    input 	[6:0] 		fault_bit;
+    output	[127:0] 	ciphertext;
 
-    wire [127: 0] state, key, ciphertext;
+    wire [127: 0] state, key;
 
     assign state    = 128'h97157a6fc8e4bbe432c40d35f2716092;    // change state here
     assign key      = 128'heba02e379817d636a144551df49ade37;    // change key here
@@ -21,16 +24,17 @@ module exp10_top_part2 (clk);
     // instantiate AES 
 	aes_128 U1(.clk(clk), 
 				.state(state), 
-				.key(key), 
+				.key(key),
+				.fault_en(fault_en),
+				.fault_bit(fault_bit),
 				.out(ciphertext));
 
-    // instantiate RAM
-
-	ram1 U2(
-	.address(1'b0),
-	.clock(clk),
-	.data(ciphertext),
-	.wren(1'b1),
-	.q());
+ //    // instantiate RAM
+	// ram1 U2(
+	// .address(1'b0),
+	// .clock(clk),
+	// .data(ciphertext),
+	// .wren(1'b1),
+	// .q());
 
 endmodule
