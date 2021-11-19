@@ -1,7 +1,23 @@
 
-%TODO: Loop through all files
+%import and define C
+C = fgetl(fopen('C_data.hex','r'));
 
+%get all D file names
+files = getFileNames;
+full = [];
+    
+%For each Byte out of the 16...
+for currByte= 1:16 
+%Loop through all files
+    for i = 1:length(files)
+    %Import file and put value in D: where D is an array of 16 bytes
+    data = fgetl(fopen(files(i),'r'));
 
-%TODO: Import file and put value in D: where D is an array of 15 bytes
-
-for D_index 
+        highByte = 32 - (;
+        lowByte = 2 * D_index;
+        C_byte = hex2dec(C(highIndex:lowIndex));
+        
+        full = [full; getXArr()];
+        
+    end
+end
