@@ -17,8 +17,8 @@ for currByte= 1:16
     D = fgetl(fopen(files(file_count),'r'));
     file_count = file_count +1;
 
-        highByte = 32 - 2*(currByte -1)-1;
-        lowByte = 32 - 2*(currByte -1);
+       
+        [highByte, lowByte] = byteLut(16-currByte);
         
         C_byte = hex2dec(C(highByte:lowByte));
         D_byte = hex2dec(D(highByte:lowByte));
@@ -27,5 +27,9 @@ for currByte= 1:16
         
     end
     %Compare code
+    full(full==-1) = NaN;
+    m9_sub = mode(full, 'all');
+    
+    
     
 end
