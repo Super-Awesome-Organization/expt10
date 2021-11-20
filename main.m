@@ -1,6 +1,6 @@
 
 %import and define C
-C = fgetl(fopen('C_data.hex','r'));
+C = parse(fopen('C_data.hex','r'));
 
 %get all D file names
 m9 = zeros (1,16);
@@ -16,7 +16,7 @@ for currByte= 1:16
     for i = 1:8
     %Import file and put value in D: where D is an array of 16 bytes
     
-    D = fgetl(fopen(files(file_count),'r'));
+    D = parse(fopen(files(file_count),'r'));
     file_count = file_count +1;
 
        
