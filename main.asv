@@ -38,23 +38,23 @@ m9_hex = dec2hex(m9, 2);
 
 %% Get K10
 K10 = -1*ones (1,16);
-C_dec = -1*ones (1,16);
 result = -1*ones(1,16);
 %turn C into array
 for i = 1:16
-    C_dec(1,i) = hex2dec(C(i*2-1:i*2));
+    C_dec = hex2dec(C(i*2-1:i));
+
     
 end    
 for i = 1:16
    temp = subByte(m9(1,i));
    
-   [highBit, lowBit] = byteLut(i-1);
+   [highBit, lowBit] = byteLut(16-i);
    index = lowBit/2;
    result(1,index) = temp;
    
-  
+    K10 (1, index) = bitxor(C_byte,result(1,index));
 end  
-   K10  = bitxor(C_dec,result);
+ 
 
 
 
