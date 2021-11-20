@@ -57,23 +57,11 @@ end
    K10  = bitxor(C_dec,result);
 %% Finding K
 tempK = K10;
-%for i = 1:10
- %  tempK = key_invert(tempK,i); 
+for i = 1:11
+   tempK = key_invert(tempK,i); 
 
-%end
-
-K9 = key_invert(K10,1);
-K8 = key_invert(K9,2);
-K7 = key_invert(K8,3);
-K6 = key_invert(K7,4);
-K5 = key_invert(K6,5);
-K4 = key_invert(K5,6);
-K3 = key_invert(K4,7);
-K2 = key_invert(K3,8);
-K1 = key_invert(K2,9);
-finalKey = key_invert(K1,10);
-
-
+end    
+finalKey = tempK;
 finalKey_hex = dec2hex(finalKey);
 
 
