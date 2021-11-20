@@ -55,6 +55,7 @@ for i = 1:16
   
 end  
    K10  = bitxor(C_dec,result);
+   
 
 
 
