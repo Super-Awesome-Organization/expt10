@@ -1,6 +1,21 @@
+% Group 2: Raj Patel, Zachary Rouviere, Evan Waxman
+% Experiement 10 Part 3
+% 11/29/2021
+%
+% Description:
+%	byteLut.m is a function that implments the ShiftRows function in the
+%	AES algoriuthm. This function will will return the MATLAB index postion 
+%	that corresponds to the specific byte that is being looked at before
+%	ShiftRows occurs. The input is the currByte which is the specific byte 
+%   that is being looked at before ShiftRows occurs. The outputs are
+%   highByte and lowByte which corresponds to the index postioning in
+%   MATLAB after ShiftRows is performed. ShiftRows is performed in this
+%   function by using a look-up-table (LUT).
+
+
 function [highByte,lowByte] = byteLut(currByte)
-%BYTELUT Summary of this function goes here
-%   Detailed explanation goes here
+
+% current byte being looked at and ouputs the index postion for shiftrows
 switch (currByte)
     
     case 0
