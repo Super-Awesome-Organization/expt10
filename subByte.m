@@ -1,9 +1,17 @@
+% Group 2: Raj Patel, Zachary Rouviere, Evan Waxman
+% Experiement 10 Part 3
+% 11/29/2021
+%
+% Description:
+%	subByte.m is a function that implments the S LUT in table.v. A byte is
+%	taken in and the corresponding value based on the LUT is outputted by
+%	the function.
+
 function [out] = subByte(in)
-%SUBBYTE Summary of this function goes here
-%   Detailed explanation goes here
+% Implment S-LUT in table.v
 
 switch (in)
-    case 0x00
+case 0x00
 	out = 0x63;
 case 0x01
 	out = 0x7c;
