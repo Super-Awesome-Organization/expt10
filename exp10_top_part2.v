@@ -22,7 +22,7 @@ module exp10_top_part2 (clk, fault_en, fault_bit, ciphertext);
     assign key      = 128'heba02e379817d636a144551df49ade37;    // change key here
 
     // instantiate AES 
-	aes_128 U1(.clk(clk), 
+	aes_128_fault U1(.clk(clk), 
 				.state(state), 
 				.key(key),
 				.fault_en(fault_en),
