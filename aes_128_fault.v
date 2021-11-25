@@ -1,3 +1,13 @@
+// Group 2: Raj Patel, Zachary Rouviere, Evan Waxman
+// Experiement 10 Part 2
+// 11/29/2021
+
+// Description:
+//	This is a modified AES-128 implmentation to inject a fault in
+//  a specific bit postion of M9 (s9). This will cause a 1 byte fault
+//  on the ciphertext.
+
+
 /*
  * Copyright 2012, Homer Hsing <homer.hsing@gmail.com>
  *
@@ -27,11 +37,18 @@ module aes_128_fault(clk, state, key, fault_en, fault_bit, out);
 
     reg   [127:0] s9_fault;
 
+    // inject fault
     always @(*) begin
-        s9_fault = s9;
+       
+        // equates correct M9 (s9) value to s9_fault reg
+        s9_fault = s9;  
+
+        //  determines if fault enable is true. If so injects a bit flip 
+        //  based on the switch postion (fault_bit)
         if (fault_en) begin
             s9_fault[fault_bit] = ~s9[fault_bit];
         end
+
     end
 
     always @ (posedge clk)
@@ -64,7 +81,7 @@ module aes_128_fault(clk, state, key, fault_en, fault_bit, out);
         r9 (clk, s8, k8b, s9);
 
     final_round
-        rf (clk, s9_fault, k9b, out);
+        rf (clk, s9_fault, k9b, out); // change sub ciphertext input to faultly reg
 endmodule
 
 module expand_key_128(clk, in, out_1, out_2, rcon);

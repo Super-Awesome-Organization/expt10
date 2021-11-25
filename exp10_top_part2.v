@@ -1,10 +1,11 @@
 // Group 2: Raj Patel, Zachary Rouviere, Evan Waxman
-// Experiement 10 Part 1
+// Experiement 10 Part 2
 // 11/29/2021
 
 // Description:
-//	This module instantiates the aes_128.v and a ram of 128 bits wide and 
-//  1 word deep. The state and key values are assigned in this module. 
+//	This module instantiates the aes_128_fault.v. This module passes in
+//	the fault enable signal and thelocation of where the bit fault should
+//	occur
 //  Since we are group 2 we used 97157a6fc8e4bbe432c40d35f2716092 as
 //  the state and eba02e379817d636a144551df49ade37 as the key.
 
@@ -12,8 +13,8 @@
 module exp10_top_part2 (clk, fault_en, fault_bit, ciphertext);
 
     input 				clk;
-    input 				fault_en;
-    input 	[6:0] 		fault_bit;
+    input 				fault_en;	// enable or disable fault
+    input 	[6:0] 		fault_bit;	// location of where bit fault should occur.
     output	[127:0] 	ciphertext;
 
     wire [127: 0] state, key;
@@ -21,7 +22,7 @@ module exp10_top_part2 (clk, fault_en, fault_bit, ciphertext);
     assign state    = 128'h97157a6fc8e4bbe432c40d35f2716092;    // change state here
     assign key      = 128'heba02e379817d636a144551df49ade37;    // change key here
 
-    // instantiate AES 
+    // instantiate AES Fault
 	aes_128_fault U1(.clk(clk), 
 				.state(state), 
 				.key(key),
